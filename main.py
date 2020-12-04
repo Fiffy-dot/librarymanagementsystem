@@ -46,7 +46,11 @@ print("=" * 50)
 
 
 def main():
-    filename = input("What is your name? ")
+    """
+
+    """
+    name = input("What is your name? ")
+    filename = name
     with open(filename, "a") as f:
         f.write("This is the file  for " + filename + "\n")
     supervisor_actions = ['See all Books', 'Find a specific book', 'Search for a book by its author',
@@ -63,21 +67,18 @@ def main():
              choose 3 for Facilitator :
              """))
     print("What do you want to do today?")
-    with open(filename, "a") as f:
-        f.write(str(role))
     if role == 1:
         repeat_actions = True
-        name = input("What is your name? ")
+        with open(filename, "a") as f:
+            f.write("This file is for a Supervisor\n")
         with open(filename, "a") as f:
             f.write("Date : {}".format(date) + "\n")
-            f.write("This is the file  for " + filename + "\n")
         email = input("What is your email? ")
         with open(filename, "a") as f:
-            f.write(email + "\n")
+            f.write("Email address : " + email + "\n")
         id = input("What is your id? ")
         with open(filename, "a") as f:
-            f.write(str(id)+ "\n")
-            f.write("{}".format(date) + "\n")
+            f.write("ID: " + str(id)+ "\n")
         while repeat_actions:
             i = 1
             for action in supervisor_actions:
@@ -85,7 +86,7 @@ def main():
                 i += 1
             action = int(input("Select one action (1 - 10): "))
             with open(filename, "a") as f:
-                f.write(str(action)+ "\n")
+                f.write("Action Executed: " + supervisor_actions[action - 1] + '\n')
             if action == 1:
                 details = User(name, email, id)
                 User.see_all_books(details, books)
@@ -116,33 +117,31 @@ def main():
             elif action == 10:
                 print("Thank you, see you soon!")
                 quit()
-            repeat_actions = input('Would you want to perform another action? ').lower()
+            repeat_actions = input('Would you want to perform another action? yes or no ').lower()
             with open(filename, "a") as f:
-                f.write(str(repeat_actions) + "\n")
-                f.write(input(repeat_actions) + "\n")
-            if repeat_actions in ['y', 'yes']:
+                f.write('Would you want to perform another action? ' + str(repeat_actions) + "\n")
+            if repeat_actions == 'y' or repeat_actions == 'yes':
                 repeat_actions = True
             else:
                 repeat_actions = False
     elif role == 2:
         repeat_actions = True
-        name = input("What is your name? ")
-        filename = name
+        with open(filename, "a") as f:
+            f.write("This file is for a Student\n")
         with open(filename, "a") as f:
             f.write("Date : {}".format(date) + "\n")
-            f.write("This is the file  for " + filename + "\n")
         email = input("What is your email? ")
         with open(filename, "a") as f:
-            f.write(email + "\n")
+            f.write("Email address : " + email + "\n")
         id = input("What is your id? ")
         with open(filename, "a") as f:
-            f.write(str(id) + "\n")
+            f.write("ID: " + str(id) + "\n")
         faculty = input("What faculty are you in?(eg CS,IBT,GC,EL):  ")
         with open(filename, "a") as f:
-            f.write(faculty + "\n")
+            f.write("Faculty: " + faculty + "\n")
         year = input("What year are you in(Please type in numbers as in '1','2'): ")
         with open(filename, "a") as f:
-            f.write(str(year) + "\n")
+            f.write("Academic Year : " + str(year) + "\n")
         while repeat_actions:
             i = 1
             for action in student_actions:
@@ -150,7 +149,7 @@ def main():
                 i += 1
             action = int(input("Select one action (1 - 7): "))
             with open(filename, "a") as f:
-                f.write(str(action) + "\n")
+                f.write("Action Executed: " + student_actions[action - 1] + '\n')
             if action == 1:
                 details = User(name, email, id)
                 User.see_all_books(details, books)
@@ -168,36 +167,33 @@ def main():
                 Student.borrow_book(details, books, borrowed_books)
             elif action == 6:
                 details = Student(name, email, id, faculty, year)
-                Student.borrow_book(details, books, borrowed_books)
+                details.extend_borrowing(borrowed_books)
             elif action == 7:
                 print("Thank you, see you soon!")
                 quit()
-            repeat_actions = input('Would you want to perform another action? ').lower()
+            repeat_actions = input('Would you want to perform another action? yes or no ').lower()
             with open(filename, "a") as f:
-                f.write(str(repeat_actions) + "\n")
-            if repeat_actions in ['y', 'yes']:
+                f.write('Would you want to perform another action? ' + str(repeat_actions) + "\n")
+            if repeat_actions == 'y' or repeat_actions == 'yes':
                 repeat_actions = True
             else:
                 repeat_actions = False
     elif role == 3:
         repeat_actions = True
-        name = input("What is your name? ")
-        filename = name
+        with open(filename, "a") as f:
+            f.write("This file is for a Supervisor\n")
         with open(filename, "a") as f:
             f.write("Date : {}".format(date) + "\n")
-            f.write("This is the file  for " + filename + "\n")
         email = input("What is your email? ")
         with open(filename, "a") as f:
-            f.write(email + "\n")
+            f.write("Email address: " + email + "\n")
         id = input("What is your id? ")
         with open(filename, "a") as f:
-            f.write(id + "\n")
+            f.write("ID: " + id + "\n")
         faculty = input("What faculty are you in?(eg CS,IBT,GC,EL):  ")
         with open(filename, "a") as f:
-            f.write(faculty + "\n")
+            f.write("Faculty: " + faculty + "\n")
         year = input("What year are you in since you joined ALu(Please type in numbers as in '2','3'): ")
-        with open(filename, "a") as f:
-            f.write(str(year) + "\n")
         while repeat_actions:
             i = 1
             for action in facilitator_actions:
@@ -205,7 +201,7 @@ def main():
                 i += 1
             action = int(input("Select one action (1 - 7): "))
             with open(filename, "a") as f:
-                f.write(str(action) + "\n")
+                f.write("Action executed: " + facilitator_actions[action - 1] + '\n')
             if action == 1:
                 details = User(name, email, id)
                 User.see_all_books(details, books)
@@ -223,14 +219,14 @@ def main():
                 Facilitator.borrow_book(details, books, borrowed_books)
             elif action == 6:
                 details = Facilitator(name, email, id, faculty, year)
-                Facilitator.borrow_book(details, books, borrowed_books)
+                Facilitator.extend_borrowing(details, borrowed_books)
             elif action == 7:
                 print("Thank you, see you soon!")
                 quit()
-            repeat_actions = input('Would you want to perform another action? ').lower()
+            repeat_actions = input('Would you want to perform another action? yes or no ').lower()
             with open(filename, "a") as f:
-                f.write(str(repeat_actions) + "\n")
-            if repeat_actions in ['y', 'yes']:
+                f.write('Would you want to perform another action? ' + str(repeat_actions) + "\n")
+            if repeat_actions == 'y' or repeat_actions == 'yes':
                 repeat_actions = True
             else:
                 repeat_actions = False
