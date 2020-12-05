@@ -44,14 +44,15 @@ for book in books:
     print(book)
 print("=" * 50)
 
+
 def validate_email(email_address, password):
-    #check with re module if email is correct
+    # check with re module if email is correct
     if re.match(r"[^@]+@[^@]+\.[^@]+", email_address):
         with open("files/supervisors.csv", "r") as supervisor_file:
             supervisors = supervisor_file.readlines()
             for user in supervisors:
                 user = user.split(",")
-                if  user[1] == email_address:
+                if user[1] == email_address:
                     if user[3] == password:
                         return 1, user[0], user[1], user[2]
                     else:
@@ -67,7 +68,6 @@ def validate_email(email_address, password):
                     else:
                         print("You have entered  an incorrect password")
 
-
         with open("files/facilitators.csv", "r") as facilitator_file:
             facilitators = facilitator_file.readlines()
             for facilitator in facilitators:
@@ -82,13 +82,14 @@ def validate_email(email_address, password):
         print("You have entered an invalid email address")
         return 0
 
+
 def connect(value):
     if value[0] == 1:
-        #create_su and dis menu
+        # create_su and dis menu
         supervisor = Supervisor(value[1], value[2], value[3])
         supervisor_actions = ['See all Books', 'Find a specific book', 'Search for a book by its author',
-                          'Search for a book', 'Add a book', 'Remove a book', 'Receive a book from a user',
-                          'Remove penalty after user pays', 'Remove User', 'Exit']
+                              'Search for a book', 'Add a book', 'Remove a book', 'Receive a book from a user',
+                              'Remove penalty after user pays', 'Remove User', 'Exit']
         filename = value[1]
         user_file = "files/history/" + filename
         with open(user_file, "a") as f:
@@ -96,13 +97,13 @@ def connect(value):
             f.write("This file is for a Supervisor\n")
             f.write("Date : {}".format(date) + "\n")
             f.write("Email address : " + value[2] + "\n")
-            f.write("ID: " + value[3]+ "\n")
+            f.write("ID: " + value[3] + "\n")
         a = 0
         while True and a < 3:
             i = 1
             for action in supervisor_actions:
-                    print(f'{i} {action}')
-                    i += 1
+                print(f'{i} {action}')
+                i += 1
             try:
                 action = int(input("Select one action (1 - 10): "))
             except ValueError:
@@ -147,9 +148,10 @@ def connect(value):
 
 
     elif value[0] == 2:
-        #create student and dis menu
+        # create student and dis menu
         student = Student(value[1], value[2], value[3], value[4], value[5])
-        student_actions = ['See all Books', 'Find a specific book', 'Search for a book by its author', 'Search for a book',
+        student_actions = ['See all Books', 'Find a specific book', 'Search for a book by its author',
+                           'Search for a book',
                            'Borrow a book', 'Extend borrowing time for a book', 'Exit']
         filename = value[1]
         user_file = "files/history/" + filename
@@ -207,7 +209,7 @@ def connect(value):
 
 
     elif value[0] == 3:
-        #create su and dis menu
+        # create su and dis menu
         facilitator = Facilitator(value[1], value[2], value[3], value[4])
         facilitator_actions = ['See all Books', 'Find a specific book', 'Search for a book by its author',
                                'Search for a book', 'Borrow a book', 'Extend borrowing time for a book', 'Exit']
@@ -263,6 +265,7 @@ def connect(value):
 
         return 1
 
+
 def login():
     print("=" * 50)
     print("""Welcome to the ALU Library Management System!!!!""")
@@ -286,11 +289,12 @@ def login():
         connect(return_value)
         return 1
 
+
 def retry():
     answer = input("Do you want to reconnect? yes or no ").lower()
     if answer == 'yes':
         login()
 
 
-#print(validate_email("d.murair@alustudent.com", "dirac"))
+# print(validate_email("d.murair@alustudent.com", "dirac"))
 login()

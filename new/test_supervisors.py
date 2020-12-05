@@ -2,6 +2,7 @@
 # this is a file for the users
 # class supervisor
 from supervisors import *
+from main import *
 import unittest
 from unittest import mock
 import pytest
