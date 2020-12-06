@@ -11,6 +11,7 @@ month = int(month)
 year = datetime.datetime.now().year
 year = int(year)
 
+
 # this is the class for the students
 
 
@@ -179,3 +180,27 @@ class Student(User):
 
             z += 1
 
+
+# sample data to test the class
+
+student1 = Student("Fiona", "f.nganga@alustudent.com", 2, "CS", "2020")
+print(student1.name)
+
+# borrowing book
+
+lst_b = []
+
+books = [{"name": "PYTHON", "id": "1", "status": "BORROWED", "author": "DIRAC"},
+         {"name": "JAVA", "id": "2", "status": "NOT BORROWED", "author": "ACHILLE"},
+         {"name": "PYTHON FOR EVERYBODY", "id": "3", "status": "NOT BORROWED", "author": "FIONA"},
+         {"name": "C++", "id": "4", "status": "NOT BORROWED", "author": "FIONA"},
+         {"name": "MFC", "id": "5", "status": "NOT BORROWED", "author": "ACHILLE"},
+         {"name": "HARRY POTTER", "id": "6", "status": "BORROWED", "author": "DIRAC"},
+         {"name": "PYTHON THE NORMAL WAY", "id": "7", "status": "BORROWED", "author": "DIRAC"}]
+# student1.borrow_book(books, lst_b)
+# print(lst_b)
+# print(books)
+# student1.extend_borrowing(lst_b)
+# print(lst_b)
+# student1.extend_borrowing(lst_b)
+# print(lst_b)

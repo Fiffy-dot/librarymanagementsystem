@@ -2,7 +2,7 @@
 # This file is for testing our class Student
 
 # we import all the files we need
-from facilitators import *
+from facilitator import *
 import unittest
 from unittest import mock
 import pytest
